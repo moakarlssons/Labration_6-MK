@@ -24,7 +24,6 @@ async function getRecipe(searchInput) {
 
 }
 
-getRecipe();
 
 // Visa recept på sidan
 
@@ -33,24 +32,24 @@ async function showRecipe(event) {
     const data = await getRecipe(inputEl.value)
 
     if (!data) {
-        result.innerHTML = `Kunde inte hämta receptet`
+        recipeSection.innerHTML = `Kunde inte hämta receptet`
     }
 
-    if (data.recipe.lenght === 0) {
-        result.innerHTML = `Inget recept hittades, försök igen`
+    if (data.recipes.length === 0) {
+        recipeSection.innerHTML = `Inget recept hittades, försök igen`
     }
 
-    data.recipe.forEach(recipe => {
-        result.innerHTML = `<li>
-        <h1> Receptets namn: ${recipe.name}</h1>
-        <img src="${recipe.image}">`
-    })
+    data.recipes.forEach(recipe => {
+        recipeSection.innerHTML = += `
+        <li>
+        <h2> Receptets namn: ${recipe.name}</h2>
+        <img src="${recipe.image}" alt="${recipe.name}">`
+    });
 }
 
 //Eventlyssnare
 
-searchForm.addEventListener("submit", (event) => {
-    event.preventDefault();
+searchForm.addEventListener("submit", (showRecipe) => {
     const recipeSearched = searchInput.value;
 
     getRecipe(recipeSearched);
