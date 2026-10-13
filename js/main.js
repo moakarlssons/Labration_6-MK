@@ -4,9 +4,26 @@
  * Namn: Moa Karlsson
  */
 
-const searchForm = document.querySelector("#searchform");
+const form = document.querySelector("#searchform");
 const searchInput = document.querySelector("#search");
 const recipeSection = document.querySelector("#recipe");
+
+
+// Hämta data från API
+async function getRecipe(searchInput) {
+    try {
+        const response = await fetch(`'https://dummyjson.com/recipes'${searchInput}`)
+        if (!response.ok) {
+            throw new Error("Fel")
+        }
+        const data = await response.json()
+        return data;
+    } catch (error) {
+
+    }
+
+}
+getRecipe();
 
 
 //Eventlyssnare
