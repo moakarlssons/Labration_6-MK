@@ -7,7 +7,6 @@
 const searchForm = document.querySelector("#searchform");
 const searchInput = document.querySelector("#search");
 const recipeSection = document.querySelector("#recipe");
-const inputEl = document.querySelector("#search");
 
 // Hämta data från API
 async function getRecipe(searchInput) {
@@ -19,7 +18,8 @@ async function getRecipe(searchInput) {
         const data = await response.json();
         return data;
     } catch (error) {
-
+        console.log(error);
+        return null;
     }
 
 }
