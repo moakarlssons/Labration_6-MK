@@ -42,21 +42,17 @@ async function showRecipe(event) {
     }
 
     recipeSection.innerHTML = "";
-
-    data.recipes.forEach(recipe => {
-        recipeSection.innerHTML = += `
+    const recipe = data.recipes[0];
+    recipeSection.innerHTML += `
         <li>
             <h2> Receptets namn: ${recipe.name}</h2>
             <img src="${recipe.image}" alt="${recipe.name}">
         </li>
         `;
-    });
 }
 
 //Eventlyssnare
 
 searchForm.addEventListener("submit", showRecipe)
-const recipeSearched = searchInput.value;
 
-getRecipe(recipeSearched);
 
