@@ -9,7 +9,7 @@ const searchForm = document.querySelector("#searchform");
 const searchInput = document.querySelector("#search");
 const recipeSection = document.querySelector("#recipe");
 const errorMessage = document.querySelector("#error");
-const message = document.querySelector("message");
+const message = document.querySelector("#message");
 
 // Hämta data från API
 async function getRecipe(searchInput) {
@@ -49,7 +49,6 @@ async function showRecipe(event) {
         return;
     }
 
-    message.textContent = "";
     if (data.recipes.length === 0) {
         recipeSection.innerHTML = "";
         message.textContent = "Inget recept kunde hittas, försök igen";
