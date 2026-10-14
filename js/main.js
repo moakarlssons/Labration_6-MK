@@ -36,10 +36,11 @@ async function getRecipe(searchInput) {
         console.log(error);
         return null;
     }
+}
 
-    // Skriv ut receptet i DOM
-    function displayRecipe(recipe) {
-        recipeSection.innerHTML = `
+// Skriv ut receptet i DOM
+function displayRecipe(recipe) {
+    recipeSection.innerHTML = `
         <h3> Recipe: ${recipe.name} </h3>
             <img src="${recipe.image}" alt="${recipe.name}">
             <p> Servings: ${recipe.servings} </p>
@@ -56,8 +57,8 @@ async function getRecipe(searchInput) {
         ${recipe.instructions.map(instructions => `<li>${instructions}</li>`).join("")}
         </ol>
         `;
-    }
 }
+
 // Hantera formuläret
 async function showRecipe(event) {
     event.preventDefault();
