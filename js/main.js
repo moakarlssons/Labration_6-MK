@@ -48,7 +48,6 @@ async function showRecipe(event) {
 
     // Validering vid API-anrop
     if (!data) {
-        recipeSection.innerHTML = "";
         message.textContent = "Det gick inte att hämta receptet. Försök igen";
         return;
     }
