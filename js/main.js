@@ -76,9 +76,15 @@ async function showRecipe(event) {
 
     const data = await getRecipe(text);
 
+    // Kontrollera API-anropet
+    if (!data) {
+        recipeSection.innerHTML = "";
+        message.textContent = "Något gick fel. Försök igen";
+        return;
+    }
+
     // Ger sökningen resultat?
     if (data.recipes.length === 0) {
-        recipeSection.innerHTML = "";
         message.textContent = "Inget recept kunde hittas, försök igen";
         return;
     }
