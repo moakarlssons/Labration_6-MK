@@ -65,9 +65,8 @@ async function showRecipe(event) {
 
     const text = searchInput.value.trim();
 
-    // Om det sker fel vid hämtning
+    // Kontrollera sökfält
     if (!validateForm(text)) {
-        message.textContent = "Det gick inte att hämta receptet. Försök igen";
         return;
     }
 
