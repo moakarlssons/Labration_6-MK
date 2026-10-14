@@ -18,8 +18,9 @@ function validateForm(text) {
 
     if (text === "") {
         errorMessage.textContent = "Ange ett recept";
-        return;
+        return false;
     }
+    return true;
 }
 
 // Hämta data från API
