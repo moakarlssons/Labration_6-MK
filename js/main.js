@@ -64,9 +64,10 @@ async function showRecipe(event) {
     event.preventDefault();
 
     const text = searchInput.value.trim();
+    const data = await getRecipe(text);
 
     // Om det sker fel vid hämtning
-    if (!data) {
+    if (!validateForm) {
         message.textContent = "Det gick inte att hämta receptet. Försök igen";
         return;
     }
@@ -75,7 +76,6 @@ async function showRecipe(event) {
     message.textContent = "";
     recipeSection.innerHTML = "";
 
-    const data = await getRecipe(text);
 
     // Ger sökningen resultat?
     if (data.recipes.length === 0) {
