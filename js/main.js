@@ -4,10 +4,12 @@
  * Namn: Moa Karlsson
  */
 
+
 const searchForm = document.querySelector("#searchform");
 const searchInput = document.querySelector("#search");
 const recipeSection = document.querySelector("#recipe");
-const errorMessage = document.querySelector("#message");
+const errorMessage = document.querySelector("#error");
+const message = document.querySelector("message");
 
 // Hämta data från API
 async function getRecipe(searchInput) {
@@ -25,23 +27,36 @@ async function getRecipe(searchInput) {
 
 }
 
-
 // Visa recept på sidan
 
 async function showRecipe(event) {
     event.preventDefault();
-    const data = await getRecipe(searchInput.value);
 
+    // Validering av sökfältet
+    errorMessage.textContent = "";
+    const text = searchInput.value.trim();
+
+    if (text === "") {
+        errorMessage.textContent = "Ange ett recept";
+        return;
+    }
+    const data = await getRecipe(text);
+
+    // Validering vid API-anrop
     if (!data) {
-        recipeSection.innerHTML = "Kunde inte hämta receptet";
+        recipeSection.innerHTML = "";
+        message.textContent = "Det gick inte att hämta receptet. Försök igen";
         return;
     }
 
+    message.textContent = "";
     if (data.recipes.length === 0) {
-        recipeSection.innerHTML = "Inget recept hittades, försök igen";
+        recipeSection.innerHTML = "";
+        message.textContent = "Inget recept kunde hittas, försök igen";
         return;
     }
 
+    // Skriv ut receptet
     recipeSection.innerHTML = "";
     const recipe = data.recipes[0];
     recipeSection.innerHTML += `
@@ -65,15 +80,4 @@ async function showRecipe(event) {
 
 //Eventlyssnare
 
-searchForm.addEventListener("submit", showRecipe)
-
-const text = searchInput.value.trim;
-
-if (text === "") {
-    errorMessage.textContent = "Något gick fel, försök igen";
-    return;
-}
-
-
-
-
+searchForm.addEventListener("submit", showRecipe);
