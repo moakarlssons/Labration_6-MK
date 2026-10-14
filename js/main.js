@@ -44,10 +44,21 @@ async function showRecipe(event) {
     recipeSection.innerHTML = "";
     const recipe = data.recipes[0];
     recipeSection.innerHTML += `
-        <li>
-            <h2> Receptets namn: ${recipe.name}</h2>
+        <h3> Recipe: ${recipe.name} </h3>
             <img src="${recipe.image}" alt="${recipe.name}">
-        </li>
+            <p> Servings: ${recipe.servings} </p>
+            <p> Prep time: ${recipe.prepTimeMinutes} minutes</p>
+            <p> Cooking time: ${recipe.cookTimeMinutes} minutes </p>
+            <p> Difficulty: ${recipe.difficulty} </p>
+        
+        <h4>Ingredients</h4>
+        <ul> 
+        ${recipe.ingredients.map(ingredient => `<li>${ingredient}</li>`).join("")}
+        </ul>
+        <h4>Instructions</h4>
+        <ol>
+        ${recipe.instructions.map(instructions => `<li>${instructions}</li>`).join("")}
+        </ol>
         `;
 }
 
