@@ -7,6 +7,7 @@
 const searchForm = document.querySelector("#searchform");
 const searchInput = document.querySelector("#search");
 const recipeSection = document.querySelector("#recipe");
+const errorMessage = document.querySelector("#message");
 
 // Hämta data från API
 async function getRecipe(searchInput) {
@@ -65,5 +66,14 @@ async function showRecipe(event) {
 //Eventlyssnare
 
 searchForm.addEventListener("submit", showRecipe)
+
+const text = searchInput.value.trim;
+
+if (text === "") {
+    errorMessage.textContent = "Något gick fel, försök igen";
+    return;
+}
+
+
 
 
