@@ -40,6 +40,10 @@ async function showRecipe(event) {
         errorMessage.textContent = "Ange ett recept";
         return;
     }
+    // Rensa tidigare felmeddelande och recept
+    message.textContent = "";
+    recipeSection.innerHTML = "";
+
     const data = await getRecipe(text);
 
     // Validering vid API-anrop
